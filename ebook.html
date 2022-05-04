@@ -27,16 +27,37 @@
         <li>
           <img src="./img/ebook/ebook_4.jpg" alt="">
         </li>
+        <li>
+          <img src="./img/ebook/ebook_5.jpg" alt="">
+        </li>
+        <li>
+          <img src="./img/ebook/ebook_6.jpg" alt="">
+        </li>
+        <li>
+          <img src="./img/ebook/ebook_7.jpg" alt="">
+        </li>
+
       </ul>
       <div class="ebook--control">
-        <button type="button">이전</button>
-        <button type="button">다음</button>
+        <button type="button" class="ebook--prev">이전</button>
+        <button type="button" class="ebook--next">다음</button>
+      </div>
+      <div class="ebook--page">
+        <input class="ebook--page-current" type="number" value="1">
+        <span class="ebook--page-kan">/</span>
+        <span class="ebook--page-total"></span>
+        <button type="button" class="ebook--btn-page-move">이동</button>
       </div>
     </div>
   </body>
 </html>
 
 <script>
-const ebook = new Ebook('.ebook--wrapper')
-ebook.test()
+const ebook = new Ebook('.ebook--wrapper',{
+  prev:'.ebook--prev',
+  next:'.ebook--next',
+  currentPage:'.ebook--page-current'
+})
+console.log(ebook)
+ebook.init()
 </script>
