@@ -13,51 +13,68 @@
 
   </head>
   <body>
-    <div class="ebook--wrapper">
-      <ul class="ebook--img-list">
-        <li>
-          <img src="./img/ebook/ebook_1.jpg" alt="">
-        </li>
-        <li>
-          <img src="./img/ebook/ebook_2.jpg" alt="">
-        </li>
-        <li>
-          <img src="./img/ebook/ebook_3.jpg" alt="">
-        </li>
-        <li>
-          <img src="./img/ebook/ebook_4.jpg" alt="">
-        </li>
-        <li>
-          <img src="./img/ebook/ebook_5.jpg" alt="">
-        </li>
-        <li>
-          <img src="./img/ebook/ebook_6.jpg" alt="">
-        </li>
-        <li>
-          <img src="./img/ebook/ebook_7.jpg" alt="">
-        </li>
-
-      </ul>
-      <div class="ebook--control">
-        <button type="button" class="ebook--prev">이전</button>
-        <button type="button" class="ebook--next">다음</button>
+    <div class="ebook__wrapper">
+      <div class="ebook__scroll">
+        <div class="ebook__container">
+          <ul class="ebook__img-list">
+            <li>
+              <img src="./img/ebook/ebook_1.jpg" alt="">
+            </li>
+            <li>
+              <img src="./img/ebook/ebook_2.jpg" alt="">
+            </li>
+            <li>
+              <img src="./img/ebook/ebook_3.jpg" alt="">
+            </li>
+            <li>
+              <img src="./img/ebook/ebook_4.jpg" alt="">
+            </li>
+            <li>
+              <img src="./img/ebook/ebook_5.jpg" alt="">
+            </li>
+            <li>
+              <img src="./img/ebook/ebook_6.jpg" alt="">
+            </li>
+            <li>
+              <img src="./img/ebook/ebook_7.jpg" alt="">
+            </li>
+            <li>
+              <img src="./img/ebook/ebook_8.jpg" alt="">
+            </li>
+          </ul>
+          <div class="ebook__control">
+            <button type="button" class="ebook__prev"><span>이전</span></button>
+            <button type="button" class="ebook__next"><span>다음</span></button>
+          </div>
+        </div>
       </div>
-      <div class="ebook--page">
-        <input class="ebook--page-current" type="number" value="1">
-        <span class="ebook--page-kan">/</span>
-        <span class="ebook--page-total"></span>
-        <button type="button" class="ebook--btn-page-move">이동</button>
+      <div class="ebook__page">
+        <div class="ebook__scale">
+          <button type="button" class="ebook__scale-zoom-out">축소</button>
+          <span class="ebook__scale-txt">100%</span>
+          <button type="button" class="ebook__scale-zoom-in">확대</button>
+        </div>
+        <div class="ebook__page-control">
+          <input class="ebook__page-current" type="number" value="1">
+          <span class="ebook__page-kan">/</span>
+          <span class="ebook__page-total"></span>
+          <button type="button" class="ebook__btn-page-move">이동</button>
+        </div>
       </div>
     </div>
   </body>
 </html>
 
 <script>
-const ebook = new Ebook('.ebook--wrapper',{
-  prev:'.ebook--prev',
-  next:'.ebook--next',
-  currentPage:'.ebook--page-current'
+const ebook = new Ebook('.ebook__wrapper',{
+  prev:'.ebook__prev',
+  next:'.ebook__next',
+  currentPage:'.ebook__page-current',
+  breakPoints:{
+    768:{
+      pageShow:1
+    }
+  }
 })
-console.log(ebook)
 ebook.init()
 </script>
