@@ -2,7 +2,9 @@ class Ebook {
   constructor(div,option){
     this.div = document.querySelector(div);
     this.container = this.div.querySelector('.ebook__container');
-    this.list = this.div.querySelectorAll('ul > li');
+    this.imgList = this.div.querySelector('.ebook__img-list');
+    this.backPage = this.div.querySelector('.ebook__page-back');
+    this.list = this.imgList.querySelectorAll('li');
     this.length = this.list.length;
     this.page = 1;
     this.pageInput = this.div.querySelector(option.currentPage),
@@ -17,7 +19,7 @@ class Ebook {
     this.zoomIn = this.div.querySelector('.ebook__scale-zoom-in');
     this.zoomOut = this.div.querySelector('.ebook__scale-zoom-out');
   }
-  init(){
+  init(){    
     this.prev.addEventListener('click',()=>{
       this.toPrev()
     })
@@ -39,7 +41,7 @@ class Ebook {
         for(let key in option_){
           this[key] = option_[key]
         }
-      }
+      }      
     }
     this.zoomIn.addEventListener('click',()=>{
       this.imgZoomIn()
@@ -47,23 +49,44 @@ class Ebook {
     this.zoomOut.addEventListener('click',()=>{
       this.imgZoomOut()
     });
-    setTimeout(()=>{
-      let containerWidth = this.container.clientWidth;
-      this.div.querySelector('.ebook__page').style.width = containerWidth + 'px';
-    },100)
+
     this.pageSet();
   }
 
   pageSet(){
+    if(this.pageShow == 1){
+      this.div.classList.add('single')
+    }else{
+      this.div.classList.add('double')
+    }
+    if(this.page == 1){
+      this.imgList.classList.add('first');
+      this.backPage.classList.add('first');
+      
+    }else{
+      this.imgList.classList.remove('first')
+      this.backPage.classList.remove('first');
+    }    
+    if(this.page == this.length){
+      this.imgList.classList.add('last');
+      this.backPage.classList.add('last');
+    }else{
+      this.imgList.classList.remove('last')
+      this.backPage.classList.remove('last');
+    }  
     this.list.forEach(el=>{
       el.classList.remove('active')
-    })
+    })    
     if(this.pageShow === 1){
       this.list[this.page-1].classList.add('active')
     }
     if(this.pageShow === 2){      
-      this.list[this.page-1].classList.add('active');
-      this.list[this.page] && this.list[this.page].classList.add('active','border');
+      if(this.page == 1){
+        this.list[0].classList.add('active');
+      }else{
+        this.list[this.page-1].classList.add('active');
+        this.list[this.page] && this.list[this.page].classList.add('active','right');
+      }
     }
     if(this.pageInput){
       this.totalPage.innerText = this.length
@@ -83,15 +106,24 @@ class Ebook {
   }
   toPrev(){
     if(this.page > 1){
-      this.page -= this.pageShow;
+      if(this.page == 2){
+        this.page = 1
+      }else{
+        this.page -= this.pageShow;
+      }
       this.pageSet()
     }else{
       alert('첫번째 페이지 입니다.')
     }
   }
-  toNext(){
+  toNext(){    
+    
     if(this.page+this.pageShow <= this.length){
-      this.page += this.pageShow;
+      if(this.page == 1){
+        this.page++;
+      }else{
+        this.page += this.pageShow;
+      }
       this.pageSet()
     }else{
       alert('마지막 페이지 입니다.')
