@@ -2,6 +2,7 @@ class Ebook {
   constructor(div,option){
     this.div = document.querySelector(div);
     this.container = this.div.querySelector('.ebook__container');
+    this.scroll = this.div.querySelector('.ebook__scroll');
     this.imgList = this.div.querySelector('.ebook__img-list');
     this.backPage = this.div.querySelector('.ebook__page-back');
     this.list = this.imgList.querySelectorAll('li');
@@ -92,6 +93,17 @@ class Ebook {
       this.totalPage.innerText = this.length
       this.pageInput.value = this.page
     }
+    if(this.page == 1){
+      this.div.querySelector('.ebook__prev').classList.remove('on')
+      this.div.querySelector('.ebook__next').classList.add('on')
+    }else if(this.page == this.length){
+      this.div.querySelector('.ebook__prev').classList.add('on')
+      this.div.querySelector('.ebook__next').classList.remove('on')
+    }else{
+      this.div.querySelector('.ebook__prev').classList.add('on')
+      this.div.querySelector('.ebook__next').classList.add('on')
+    }
+    
   }
   toPage(){
     let caclPage = parseInt(this.pageInput.value);
@@ -133,7 +145,7 @@ class Ebook {
   imgZoomIn(){
     if(this.zoom < 3){
       this.zoom += 0.2;
-      this.container.style = `--scale:${this.zoom}`;
+      this.scroll.style = `--scale:${this.zoom}`;
       this.scaleText.innerText = `${(this.zoom*100).toFixed(0)}%`;
     }else{
       alert('최대크기 입니다.')
@@ -142,7 +154,7 @@ class Ebook {
   imgZoomOut(){
     if(this.zoom > 0.6){
       this.zoom -= 0.2;
-      this.container.style = `--scale:${this.zoom}`;
+      this.scroll.style = `--scale:${this.zoom}`;
       this.scaleText.innerText = `${(this.zoom*100).toFixed(0)}%`
     }else{
       alert('최소크기 입니다.')

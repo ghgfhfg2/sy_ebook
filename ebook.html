@@ -14,10 +14,15 @@
   </head>
   <body>
     <div class="ebook__wrapper">
-      <div class="ebook__page">
+      <div class="ebook__top-box">
         <h2>
+          <button class="ebook__btn-total-page" type="button" onclick="pageListToggle()">
+            <span class="top"></span>
+            <span class="mid"></span>
+            <span class="bot"></span>
+          </button>
           <a class="btn-pdf-down" href="./img/2021_11_26.pdf" download>
-            카달로그 다운로드
+            카달로그 <span>다운로드</span>
           </a>
         </h2>
         <div class="ebook__scale">
@@ -33,8 +38,7 @@
         </div> -->
       </div>      
       <div class="ebook__page-list on">
-        <button type="button" onclick="pageListToggle()" class="ebook__page-list-btn close"></button>
-        <button type="button" onclick="pageListToggle()" class="ebook__page-list-btn open"></button>
+        
         <h3>목차</h3>
         <ul class="ebook__page-list-depth-1">
           <li><button type="button" onclick="toPage(1)">목록1</button></li>
@@ -75,8 +79,8 @@
             <li class="right"></li>
           </ul>
           <div class="ebook__control">
-            <button type="button" class="ebook__prev"><span>이전</span></button>
-            <button type="button" class="ebook__next"><span>다음</span></button>
+            <button type="button" class="ebook__prev on"><span>이전</span></button>
+            <button type="button" class="ebook__next on"><span>다음</span></button>
           </div>
         </div>
       </div>
@@ -101,7 +105,8 @@ const toPage = (num) => {
   ebook.pageSet()
 }
 const pageListToggle = () => {
-  document.querySelector('.ebook__page-list').classList.toggle('on')
+  document.querySelector('.ebook__page-list').classList.toggle('on');
+  document.querySelector('.ebook__scroll').classList.toggle('on');
 }
 
 </script>
